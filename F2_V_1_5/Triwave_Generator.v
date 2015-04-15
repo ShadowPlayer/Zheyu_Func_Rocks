@@ -3,7 +3,7 @@ input wire Enable_SW_2,
 output wire Pulse);
 reg [5:0] count = 0;
 reg [5:0] DC_Index = 0;
-reg [5:0] Duty_Cycle = 0;
+reg [6:0] Duty_Cycle = 0;
 assign Pulse = (count < Duty_Cycle & Enable_SW_2);
 always @(posedge sysclk)begin
 	count<=count+1'b1;	
