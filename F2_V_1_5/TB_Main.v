@@ -27,7 +27,7 @@ initial begin
 end
 
 initial begin: stopat
-   #500000000; $finish;
+   #20000000; $finish;
 end
 
 initial begin: signals
@@ -41,15 +41,30 @@ initial begin: signals
 	
 	#1 reset = 1'b1;
 	#30 reset = 1'b0;
-
-	#200 Bt_Plus= 1'b1;
+	# 1000000 Enable_SW[0]=0;//Sine
+	
+	# 1000000 Enable_SW[1]=0;//Saw
+	
+	# 1000000 Enable_SW[2]=0;//Tri
+	
+	# 1000000 Enable_SW[3]=0;//Squ
+	
+	# 1000000 Enable_SW[0]=1;//Sine
+	
+	# 1000000 Enable_SW[1]=1;//Saw
+	
+	# 1000000 Enable_SW[2]=1;//Tri
+	
+	# 1000000 Enable_SW[3]=1;//Squ
+	
+	/*#200 Bt_Plus= 1'b1;
 	#130000000 Bt_Plus = 1'b0;
 		
 	#10000 Bt_Minus = 1'b1;
 	#130000000 Bt_Minus = 1'b0;
 		
 	#10000 Bt_Plus = 1'b1;
-	#130000000 Bt_Plus=1'b0;
+	#130000000 Bt_Plus=1'b0;*/
 				
 	//#1; $finish;  // terminates simulation
 end
