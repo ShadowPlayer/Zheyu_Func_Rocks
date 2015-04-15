@@ -8,3 +8,4 @@ case(Enable_SW)
   4'd7,4'd11,4'd13,4'd14,4'd15: Clip_Factor=3'd4;
   default: Clip_Factor=3'd1;
 endcase
+assign Pulse = (count < Duty_Cycle)
