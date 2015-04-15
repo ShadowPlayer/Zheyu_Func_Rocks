@@ -6,22 +6,15 @@ reg [3:0] Enable_SW;
 reg reset;
 reg Bt_Plus;
 reg Bt_Minus;
-wire Slow_wave_Sine;
-wire Slow_wave_Saw;
-wire Slow_wave_Tri;
-wire Slow_wave_Square;
 reg clock;
+wire Pulse;
 
-Main UUT(
-.Slow_wave_Sine(Slow_wave_Sine),
-.Slow_wave_Saw(Slow_wave_Saw),
-.Slow_wave_Tri(Slow_wave_Tri),
-.Slow_wave_Square(Slow_wave_Square),
-.Enable_SW(Enable_SW),
+Main UUT(.Enable_SW(Enable_SW),
 .sysclk(clock),
 .reset(reset),
 .Bt_Minus(Bt_Minus),
-.Bt_Plus(Bt_Plus));
+.Bt_Plus(Bt_Plus),
+.Pulse(Pulse));
 
 initial begin: clockdef // clock definition block (only useful for synchroniser)
 	clock = 1'b1;
@@ -41,10 +34,10 @@ initial begin: signals
 	reset=0;
 	Bt_Plus=0;
 	Bt_Minus=0;
-	Enable_SW[0]=1;
-	Enable_SW[1]=1;
-	Enable_SW[2]=1;
-	Enable_SW[3]=1;
+	Enable_SW[0]=1;//Sine
+	Enable_SW[1]=1;//Saw
+	Enable_SW[2]=1;//Tri
+	Enable_SW[3]=1;//Squ
 	
 	#1 reset = 1'b1;
 	#30 reset = 1'b0;
