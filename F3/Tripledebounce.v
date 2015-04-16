@@ -5,9 +5,9 @@ input wire X2,
 input wire sysclk,
 input wire reset,
 output wire X0_deb,
-output wire X1_deb
-output wire X2_deb	//X0 represents the input for the "0" key, X1 for the "1" key
-);
+output wire X1_deb,
+output wire X2_deb);
+
 
 wire pulse;
 

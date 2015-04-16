@@ -6,6 +6,7 @@
 `include"Square_Y.v"
 `include"Solidsquare_X.v"
 `include"Solidsquare_Y.v"
+
 module Shape_Pulse( input wire sysclk,
 input wire [3:0] Enable_SW,
 output wire Pulse_X,
@@ -19,15 +20,15 @@ wire Square_X;
 wire Square_Y;
 wire Solidsquare_X;
 wire Solidsquare_Y;
-wire Output_X;
-wire Output_Y;
+reg Output_X;
+reg Output_Y;
 
 assign Pulse_X = Output_X;
 assign Pulse_Y = Output_Y;
 
 always @ (*)begin
 	case (Enable_SW)
-	4'b0001:begin
+	default:begin
 		Output_X <= Circle_X;
 		Output_Y <= Circle_Y;
 		end
@@ -50,7 +51,7 @@ Circle_X CX(.sysclk(sysclk),.Enable_SW_0(Enable_SW[0]),
 .Pulse(Circle_X));
 
 Circle_Y CY(.sysclk(sysclk),.Enable_SW_0(Enable_SW[0]),
-.Pulse(Circle_Y)));
+.Pulse(Circle_Y));
 
 Eight_X EX(.sysclk(sysclk),.Enable_SW_1(Enable_SW[1]),
 .Pulse(Eight_X));

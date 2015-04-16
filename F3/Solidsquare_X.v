@@ -6,7 +6,7 @@ reg [5:0] count = 0;
 reg [5:0] DC_Index = 0;
 reg [6:0] Duty_Cycle = 0;
 
-assign Pulse = (Count < Duty_Cycle) * Enable_SW_3;
+assign Pulse = (count < Duty_Cycle) * Enable_SW_3;
 
 always @(posedge sysclk)begin
 	count<=count+1'b1;

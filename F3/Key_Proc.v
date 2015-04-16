@@ -25,10 +25,10 @@ end
 
 always @ (*)  begin 
 	case (Address)
-	2'b00: Enable_SW = 4'b0001; // show the 1st plot
-	2'b00: Enable_SW = 4'b0010; //2nd
-	2'b00: Enable_SW = 4'b0100; //3rd
-	2'b00: Enable_SW = 4'b1000; //4th
+	2'b00: Enable_SW = 4'b0001; //Show the 1st plot
+	2'b01: Enable_SW = 4'b0010; //2nd
+	2'b10: Enable_SW = 4'b0100; //3rd
+	2'b11: Enable_SW = 4'b1000; //4th
 	endcase
 end
 
