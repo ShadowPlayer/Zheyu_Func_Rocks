@@ -32,7 +32,7 @@ always @ (*)begin
 		Output_Y <= Circle_Y;
 		end
 	4'b0010:begin
-		Output_X <= Eight_X;
+		Output_X <= Eight_X; 
 		Output_Y <= Eight_Y;
 		end
 	4'b0100:begin
