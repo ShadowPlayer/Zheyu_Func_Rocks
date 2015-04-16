@@ -1,11 +1,18 @@
+'include"divider.v"
+
 module Eight_Y(input wire sysclk,
 input wire Enable_SW_2,
 output wire Pulse);
 reg [5:0] count = 0;
 reg [5:0] DC_Index = 0;
 reg [5:0] Duty_Cycle = 0;
+wire local_clk;
+
+divider div_2 (.sysclk(sysclk),.Scale(2'd2),.slowclk(local_clk));
+
 assign Pulse = (count < Duty_Cycle)& Enable_SW_2;
-always @(posedge sysclk)begin
+
+always @(posedge locak_clk)begin
 	count<=count+1'b1;
 	if (&count==1)
 		DC_Index<=DC_Index+1'b1;	
