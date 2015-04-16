@@ -27,7 +27,7 @@ initial begin
 end
 
 initial begin: stopat
-   #20000000; $finish;
+   #10000000; $finish;
 end
 
 initial begin: signals
@@ -35,11 +35,11 @@ initial begin: signals
 	Bt_Plus=0;
 	Bt_Minus=0;
 	Enable_SW[0]=1;//Sine
-	Enable_SW[1]=1;//Saw
+	Enable_SW[1]=0;//Saw
 	Enable_SW[2]=1;//Tri
-	Enable_SW[3]=1;//Squ
+	Enable_SW[3]=0;//Squ
 	
-	#1 reset = 1'b1;
+	/*#1 reset = 1'b1;
 	#30 reset = 1'b0;
 	# 1000000 Enable_SW[0]=0;//Sine
 	
@@ -55,7 +55,7 @@ initial begin: signals
 	
 	# 1000000 Enable_SW[2]=1;//Tri
 	
-	# 1000000 Enable_SW[3]=1;//Squ
+	# 1000000 Enable_SW[3]=1;//Squ*/
 	
 	/*#200 Bt_Plus= 1'b1;
 	#130000000 Bt_Plus = 1'b0;
