@@ -1,10 +1,10 @@
 module Circle_Y(input wire sysclk,
-input wire Enable_SW_2,
+input wire Enable_SW_0,
 output wire Pulse);
 reg [5:0] count = 0;
 reg [5:0] DC_Index = 5'd16;//可能会出错
 reg [5:0] Duty_Cycle = 0;
-assign Pulse = (count < Duty_Cycle)& Enable_SW_2;
+assign Pulse = (count < Duty_Cycle)& Enable_SW_0;
 always @(posedge sysclk)begin
 	count<=count+1'b1;
 	if (&count==1)
