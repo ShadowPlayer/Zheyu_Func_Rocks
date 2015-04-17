@@ -1,0 +1,95 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.6 " "(v0_9_6)";
+:vpi_time_precision - 9;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_01E62E68 .scope module, "TB_Test" "TB_Test" 2 4;
+ .timescale -9 -9;
+v003EEF20_31 .array/port v003EEF20, 31;
+v003E27B0_0 .net "DC_X", 5 0, v003EEF20_31; 1 drivers
+v003E2808_0 .var "clock", 0 0;
+S_003E3CB0 .scope module, "UUT" "Test_RAM" 2 9, 3 1, S_01E62E68;
+ .timescale 0 0;
+v003E2700_0 .alias "DC_X", 5 0, v003E27B0_0;
+v003EEF20 .array "RAM_X", 255 0, 5 0;
+v003EEF78_0 .net "Reset_Addr", 8 0, C4<000000000>; 1 drivers
+v003E2758_0 .net "sysclk", 0 0, v003E2808_0; 1 drivers
+E_01E62290 .event posedge, v003E2758_0;
+S_003E3C28 .scope begin, "clockdef" "clockdef" 2 12, 2 12, S_01E62E68;
+ .timescale -9 -9;
+S_01E62D88 .scope begin, "stopat" "stopat" 2 22, 2 22, S_01E62E68;
+ .timescale -9 -9;
+    .scope S_003E3CB0;
+T_0 ;
+    %set/v v003EEF78_0, 0, 9;
+T_0.0 ;
+    %load/v 8, v003EEF78_0, 9;
+   %cmpi/u 8, 256, 9;
+    %jmp/0xz T_0.1, 5;
+    %ix/getv 3, v003EEF78_0;
+   %jmp/1 t_0, 4;
+   %ix/load 1, 0, 0;
+   %set/av v003EEF20, 0, 6;
+t_0 ;
+    %ix/load 0, 1, 0;
+    %load/vp0 8, v003EEF78_0, 9;
+    %set/v v003EEF78_0, 8, 9;
+    %jmp T_0.0;
+T_0.1 ;
+    %end;
+    .thread T_0;
+    .scope S_003E3CB0;
+T_1 ;
+    %wait E_01E62290;
+    %movi 8, 23, 6;
+    %ix/load 3, 32, 0; address
+    %ix/load 0, 6, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v003EEF20, 0, 8;
+t_1 ;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_01E62E68;
+T_2 ;
+    %fork t_3, S_003E3C28;
+    %jmp t_2;
+    .scope S_003E3C28;
+t_3 ;
+    %set/v v003E2808_0, 1, 1;
+T_2.0 ;
+    %delay 10, 0;
+    %load/v 8, v003E2808_0, 1;
+    %inv 8, 1;
+    %set/v v003E2808_0, 8, 1;
+    %jmp T_2.0;
+    %end;
+    .scope S_01E62E68;
+t_2 %join;
+    %end;
+    .thread T_2;
+    .scope S_01E62E68;
+T_3 ;
+    %vpi_call 2 18 "$dumpfile", "Test_RAM.vcd";
+    %vpi_call 2 19 "$dumpvars";
+    %end;
+    .thread T_3;
+    .scope S_01E62E68;
+T_4 ;
+    %fork t_5, S_01E62D88;
+    %jmp t_4;
+    .scope S_01E62D88;
+t_5 ;
+    %delay 500, 0;
+    %vpi_call 2 23 "$finish";
+    %end;
+    .scope S_01E62E68;
+t_4 %join;
+    %end;
+    .thread T_4;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "TB_Test.v";
+    "Test_RAM.v";

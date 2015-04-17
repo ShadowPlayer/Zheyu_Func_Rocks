@@ -1,5 +1,5 @@
 `include"heartbeat.v"
-module Tripledebounce (input wire X0,
+module Panta_Debounce (input wire X0,
 input wire X1,
 input wire X2,
 input wire X3,

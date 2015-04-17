@@ -1,7 +1,7 @@
 `include"Key_Proc.v"
 `include"Shape_Pulse.v"
 `include"Tripledebounce.v"
-module Main (input wire sysclk,
+module Main_F3 (input wire sysclk,
 input wire Bt_Next,
 input wire Bt_Pre,
 input wire Bt_Auto,

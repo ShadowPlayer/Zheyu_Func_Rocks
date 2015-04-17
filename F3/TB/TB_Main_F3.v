@@ -1,7 +1,7 @@
 //TB_Divider.v
 //`include"Divider.v"
 `timescale 1ns / 1ns
-module TB_Main;
+module TB_Main_F3;
 reg [3:0] Enable_SW;
 reg reset;
 reg Bt_Next;
@@ -11,7 +11,7 @@ reg clock;
 wire Pulse_X;
 wire Pulse_Y;
 
-Main UUT(.sysclk(clock),
+Main_F3 UUT(.sysclk(clock),
 .reset(reset),
 .Bt_Next(Bt_Next),
 .Bt_Pre(Bt_Pre),
@@ -25,7 +25,7 @@ initial begin: clockdef // clock definition block (only useful for synchroniser)
 end
 
 initial begin
-   $dumpfile("Main.vcd");
+   $dumpfile("Main_F3.vcd");
    $dumpvars();
 end
 
