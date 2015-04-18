@@ -28,5 +28,5 @@ Frequency_Adj Fq_Adj (.sysclk(sysclk),.Plus(Plus_deb),.Minus(Minus_deb),
 .Scale(Scale));
 //Waveforms Generator.
 
-Sum Sum_pulse (.Local_clk(Slow_clk),.Enable_SW(Enable_SW),.Pulse(Pulse),.Scale(Scale));
+Sum Sum_pulse (.sysclk(sysclk),.Enable_SW(Enable_SW),.Pulse(Pulse),.Scale(Scale));
 endmodule
