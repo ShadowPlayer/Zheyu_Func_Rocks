@@ -13,7 +13,6 @@ input wire Bt_Minus,
 output wire Pulse);
 
 // Variables
-wire Slow_clk;//divider output
 //debouncer output
 wire Plus_deb;
 wire Minus_deb;
@@ -27,15 +26,7 @@ doubledebounce DB (.X0(Bt_Plus),.X1(Bt_Minus),.reset(reset),.X0_deb(Plus_deb),
 //Frequency Adjustment
 Frequency_Adj Fq_Adj (.sysclk(sysclk),.Plus(Plus_deb),.Minus(Minus_deb),
 .Scale(Scale));
-//Frequency divider.
-Divider Div(.Slow_clk(Slow_clk),
- .Scale(Scale),.sysclk(sysclk));// get a slowed lock 
 //Waveforms Generator.
 
-Sum Sum_pulse (.Local_clk(Slow_clk),.Enable_SW(Enable_SW),.Pulse(Pulse));
-
-
-
-
-
+Sum Sum_pulse (.Local_clk(Slow_clk),.Enable_SW(Enable_SW),.Pulse(Pulse),.Scale(Scale));
 endmodule
