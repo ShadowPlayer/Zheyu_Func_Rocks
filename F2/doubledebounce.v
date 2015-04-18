@@ -1,4 +1,4 @@
-`include"heartbeat.v"
+//`include"heartbeat.v"
 module doubledebounce (input wire X0,
 input wire X1,
 input wire sysclk,

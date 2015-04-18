@@ -1,9 +1,9 @@
-`include"Frequency_Adj.v"//Finding Frequency Scale
-`include"Divider.v"//frequency modulation 
+//`include"Frequency_Adj.v"//Finding Frequency Scale
+//`include"Divider.v"//frequency modulation 
 //waveforms
-`include"Sum.v"
+//`include"Sum.v"
 //doubledebouncer
-`include"doubledebounce.v"
+//`include"doubledebounce.v"
 
 module Main_F2 (input wire sysclk,
 input wire [3:0] Enable_SW,
