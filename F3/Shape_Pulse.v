@@ -1,11 +1,11 @@
-`include"Circle_X.v"
-`include"Circle_Y.v"
-`include"Eight_X.v"
-`include"Eight_Y.v"
-`include"Square_X.v"
-`include"Square_Y.v"
-`include"Solidsquare_X.v"
-`include"Solidsquare_Y.v"
+//`include"Circle_X.v"
+//`include"Circle_Y.v"
+//`include"Eight_X.v"
+//`include"Eight_Y.v"
+//`include"Square_X.v"
+//`include"Square_Y.v"
+//`include"Solidsquare_X.v"
+//`include"Solidsquare_Y.v"
 
 module Shape_Pulse( input wire sysclk,
 input wire [3:0] Enable_SW,

@@ -7,20 +7,18 @@ output reg [3:0] Enable_SW);
 reg [1:0] Address = 0;
 reg [27:0] count=0; // defining the time gap between two plot switching
 reg Is_Auto = 1'b0;// The Boolean that shows the state of Auto play. 
-assign Time_Gap = &count;
 
 always @(posedge sysclk) begin
 	count<=count+1'b1;
-	if (Bt_Next)
+	if (Bt_Next&~Bt_Pre&~Bt_Auto)
 		Address <= Address + 1'b1;
-	if (Bt_Pre)
+	else if (~Bt_Next&Bt_Pre&~Bt_Auto)
 		Address <= Address - 1'b1;
-	if (Bt_Auto)
+	else if (Bt_Auto)begin
 		Is_Auto <= Is_Auto + 1'b1;// The Auto play button ON/OFF logic
-end
-always @ (posedge Time_Gap) begin // the auto play wont be triggered immediately.
-	if (Is_Auto)
-		Address <= Address + 1'b1;
+	end	
+	if ((&count) & Is_Auto)
+	Address <= Address + 1'b1;	
 end
 
 always @ (*)  begin 

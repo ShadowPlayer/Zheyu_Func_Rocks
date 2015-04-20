@@ -1,16 +1,25 @@
 module Circle_Y(input wire sysclk,
 input wire Enable_SW_0,
 output wire Pulse);
+
 reg [5:0] count = 0;
-reg [5:0] DC_Index = 5'd16;//可能会出错
 reg [5:0] Duty_Cycle = 0;
+reg [5:0] DC_Index = 5'd16;//可能会出错
+//reg [5:0] Index_Count = 0;	
+
 assign Pulse = (count < Duty_Cycle)& Enable_SW_0;
+
 always @(posedge sysclk)begin
 	count<=count+1'b1;
-	if (&count==1)
-		DC_Index<=DC_Index+1'b1;	
+	if (&count==1) begin 
+		DC_Index<=DC_Index+1'b1;
+		/*if (DC_Index ==  (Scale - 6'b1)) begin
+			Index_Count <= Index_Count + 1'b1;
+			DC_Index <=1'b0;
+		end*/
 	end
-	
+end
+
 always @ (*)begin
 	case (DC_Index)//Duty_Cycle Lookup Table
         6'd0: Duty_Cycle = 6'd0;
@@ -43,10 +52,10 @@ always @ (*)begin
         6'd27: Duty_Cycle = 6'd60;
         6'd28: Duty_Cycle = 6'd62;
         6'd29: Duty_Cycle = 6'd62;
-        6'd30: Duty_Cycle = 6'd63;
-        6'd31: Duty_Cycle = 6'd63;
-        6'd32: Duty_Cycle = 6'd63;
-        6'd33: Duty_Cycle = 6'd63;
+        6'd30: Duty_Cycle = 7'd63;
+        6'd31: Duty_Cycle = 7'd63;
+        6'd32: Duty_Cycle = 7'd63;
+        6'd33: Duty_Cycle = 7'd63;
         6'd34: Duty_Cycle = 6'd62;
         6'd35: Duty_Cycle = 6'd62;
         6'd36: Duty_Cycle = 6'd60;

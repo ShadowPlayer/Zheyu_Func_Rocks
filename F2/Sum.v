@@ -29,11 +29,11 @@ always @(*)begin
 		default: Clip_Factor=3'd1;
 	endcase
 		if (Clip_Factor == 3'd2)
-			Duty_Sum = Duty_Output_Sine + Duty_Output_Saw + Duty_Output_Square + Duty_Output_Tri/2;	
+			Duty_Sum = (Duty_Output_Sine + Duty_Output_Saw + Duty_Output_Square + Duty_Output_Tri)/2;	
 		else if	(Clip_Factor == 3'd4)
-			Duty_Sum = Duty_Output_Sine + Duty_Output_Saw + Duty_Output_Square + Duty_Output_Tri/4;	
+			Duty_Sum = (Duty_Output_Sine + Duty_Output_Saw + Duty_Output_Square + Duty_Output_Tri)/4;	
 		else 
-			Duty_Sum = Duty_Output_Sine + Duty_Output_Saw + Duty_Output_Square + Duty_Output_Tri;
+			Duty_Sum = (Duty_Output_Sine + Duty_Output_Saw + Duty_Output_Square + Duty_Output_Tri);
 	end	
 end
 	
