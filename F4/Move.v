@@ -1,25 +1,32 @@
-module Move(input wire Bt_Up,
-input wire Bt_Down,
-input wire Bt_Left,
-input wire Bt_Right,
-output wire [5:0] Duty_X,
-output wire [5:0] Duty_Y);
+module Move (input wire sysclk,
+	input wire Reset_Sw,
+	input wire Bt_up,
+	input wire Bt_Down,
+	input wire Bt_Left,
+	input wire Bt_Right,
+	output wire [5:0] DC_X,
+	output wire [5:0] DC_Y);
 
-reg [5:0] DC_X = 6'b0;
-reg [5:0] DC_Y = 6'b0;
 
-assign	 Duty_X = DC_X;
-assign 	 Duty_Y = DC_Y; 
+reg [5:0] Duty_X = 0;
+reg [5:0] Duty_Y = 0;
 
-always @(Bt_Down,Bt_Left,Bt_Right,Bt_Up)begin
-	if (Bt_Down)
-		DC_Y <= DC_Y - 6'd4;
-	if (Bt_Up)
-		DC_Y <= DC_Y + 6'd4;
-	if (Bt_Left)
-		DC_X <= DC_X - 6'd4;	
-	if (Bt_Right)
-		DC_X <= DC_X + 6'd4;
-end	
+assign DC_X = Duty_X ;
+assign DC_Y = Duty_Y;
 
-endmodule 
+always @(posedge sysclk) begin
+ 	if (Reset_Sw) begin
+ 	Duty_X <= 0;
+	Duty_Y <= 0;	
+ 	end else begin
+		if (Bt_up)
+	 		Duty_Y <= Duty_Y + 6'd4;
+	 	if (Bt_Down)
+	 		Duty_Y <= Duty_Y - 6'd4;
+	 	if (Bt_Left)
+	 		Duty_X <= Duty_X - 6'd4;
+	 	if (Bt_Right)
+	 		Duty_X <= Duty_X + 6'd4;
+	end
+end
+endmodule
